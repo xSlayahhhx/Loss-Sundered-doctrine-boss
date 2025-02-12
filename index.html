@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slayahh Tool</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #ff4444;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: #ff4444;
+            margin-bottom: 10px;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 20px;
+        }
+
+        .group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .symbol {
+            width: 120px;
+            height: 120px;
+            background-color: #1a1a1a;
+            border: 2px solid #444;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #ffffff;
+            position: relative;
+            font-weight: bold;
+        }
+
+        .symbol:hover {
+            background-color: #333;
+            border-color: #ffd700;
+        }
+
+        .burn {
+            box-shadow: 0 0 15px #ffd700;
+            border-color: #ffd700;
+        }
+
+        .burn .icon {
+            opacity: 0.7;
+        }
+
+        .off {
+            opacity: 0.6;
+        }
+
+        .off::before, .off::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: #ff0000;
+            top: 50%;
+            left: 0;
+        }
+
+        .off::before {
+            transform: rotate(45deg);
+        }
+
+        .off::after {
+            transform: rotate(-45deg);
+        }
+
+        .callout-boxes {
+            display: flex;
+            justify-content: center;
+            gap: 100px;
+            margin-top: 30px;
+        }
+
+        .callout-box {
+            background-color: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #444;
+            width: 200px;
+        }
+
+        #burn-list + h2 {
+            color: #ffd700;
+        }
+
+        #off-list + h2 {
+            color: #ff0000;
+        }
+
+        .callout-list {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        .reset-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ff4444;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+        }
+
+        .reset-button:hover {
+            background-color: #cc0000;
+        }
+
+        .icon {
+            width: 100%; /* Fill the width of the container */
+            height: 100%; /* Fill the height of the container */
+            object-fit: cover; /* Ensure the image fills the space without distortion */
+            border-radius: 8px; /* Match the border radius of the symbol */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .symbol {
+                width: 100px;
+                height: 100px;
+                font-size: 14px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            h3 {
+                font-size: 1.2rem;
+            }
+
+            .icon {
+                width: 100%; /* Adjust as needed */
+                height: 100%; /* Adjust as needed */
+            }
+
+            .callout-boxes {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .callout-box {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Slayahh Tool</h1>
+
+    <!-- Top Row: Left Room, Middle Room, Right Room -->
+    <div class="container">
+        <!-- Column 1: Left Room -->
+        <div class="group">
+            <h3>Left Room</h3>
+            <div style="display: flex; gap: 15px;">
+                <div class="symbol" onclick="toggleState(this)" aria-label="Witness">
+                    <img src="icons/witness-icon.png" alt="Witness" class="icon">
+                    Witness
+                </div>
+                <div class="symbol" onclick="toggleState(this)" aria-label="Hive">
+                    <img src="icons/hive-icon.png" alt="Hive" class="icon">
+                    Hive
+                </div>
+            </div>
+            <div style="display: flex; gap: 15px;">
+                <div class="symbol" onclick="toggleState(this)" aria-label="Pyramid">
+                    <img src="icons/pyramid-icon.png" alt="Pyramid" class="icon">
+                    Pyramid
+                </div>
+                <div class="symbol" onclick="toggleState(this)" aria-label="Guardian">
+                    <img src="icons/guardian-icon.png" alt="Guardian" class="icon">
+                    Guardian
+                </div>
+            </div>
+            <div style="display: flex; gap: 15px;">
+                <div style="width: 120px;"></div> <!-- Empty space for alignment -->
+                <div class="symbol" onclick="toggleState(this)" aria-label="Traveler">
+                    <img src="icons/traveler-icon.png" alt="Traveler" class="icon">
+                    Traveler
+                </div>
+            </div>
+        </div>
+
+        <!-- Column 2: Middle Room -->
+        <div class="group">
+            <h3>Middle Room</h3>
+            <div style="display: flex; gap: 15px;">
+                <div></div> <!-- Empty space for alignment -->
+                <div class="symbol" onclick="toggleState(this)" aria-label="Drink">
+                    <img src="icons/drink-icon.png" alt="Drink" class="icon">
+                    Drink
+                </div>
+            </div>
+            <div style="display: flex; gap: 15px;">
+                <div class="symbol" onclick="toggleState(this)" aria-label="Worship">
+                    <img src="icons/worship-icon.png" alt="Worship" class="icon">
+                    Worship
+                </div>
+                <div class="symbol" onclick="toggleState(this)" aria-label="Kill">
+                    <img src="icons/kill-icon.png" alt="Kill" class="icon">
+                    Kill
+                </div>
+            </div>
+        </div>
+
+        <!-- Column 3: Right Room -->
+        <div class="group">
+            <h3>Right Room</h3>
+            <div style="display: flex; gap: 15px;">
+                <div class="symbol" onclick="toggleState(this)" aria-label="Worm">
+                    <img src="icons/worm-icon.png" alt="Worm" class="icon">
+                    Worm
+                </div>
+                <div class="symbol" onclick="toggleState(this)" aria-label="Savathûn">
+                    <img src="icons/savathun-icon.png" alt="Savathûn" class="icon">
+                    Savathûn
+                </div>
+            </div>
+            <div style="display: flex; gap: 15px;">
+                <div class="symbol" onclick="toggleState(this)" aria-label="Darkness">
+                    <img src="icons/darkness-icon.png" alt="Darkness" class="icon">
+                    Darkness
+                </div>
+            </div>
+            <div style="display: flex; gap: 15px;">
+                <div class="symbol" onclick="toggleState(this)" aria-label="Light">
+                    <img src="icons/light-icon.png" alt="Light" class="icon">
+                    Light
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Middle Bottom Room Section -->
+    <div class="container">
+        <div class="group">
+            <h3>Middle Bottom Room</h3>
+            <div style="display: flex; gap: 15px;">
+                <div class="symbol" onclick="toggleState(this)" aria-label="Stop">
+                    <img src="icons/stop-icon.png" alt="Stop" class="icon">
+                    Stop
+                </div>
+                <div class="symbol" onclick="toggleState(this)" aria-label="Give">
+                    <img src="icons/give-icon.png" alt="Give" class="icon">
+                    Give
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Burn and Off Callout Boxes -->
+    <div class="callout-boxes">
+        <div class="callout-box">
+            <h2 style="color: #ffd700;">Burn</h2>
+            <div class="callout-list" id="burn-list">
+                <!-- Burn results will appear here -->
+            </div>
+        </div>
+        <div class="callout-box">
+            <h2 style="color: #ff0000;">Off</h2>
+            <div class="callout-list" id="off-list">
+                <!-- Off results will appear here -->
+            </div>
+        </div>
+    </div>
+
+    <button class="reset-button" onclick="resetSymbols()">Reset</button>
+
+    <script>
+        function toggleState(element) {
+            if (element.classList.contains("burn")) {
+                element.classList.remove("burn");
+                element.classList.add("off");
+            } else if (element.classList.contains("off")) {
+                element.classList.remove("off");
+            } else {
+                element.classList.add("burn");
+            }
+            updateCallouts();
+        }
+
+        function resetSymbols() {
+            if (confirm("Are you sure you want to reset all symbols?")) {
+                document.querySelectorAll(".symbol").forEach(el => {
+                    el.classList.remove("burn", "off");
+                });
+                updateCallouts();
+            }
+        }
+
+        function updateCallouts() {
+            const burnList = document.getElementById("burn-list");
+            const offList = document.getElementById("off-list");
+
+            // Clear existing results
+            burnList.innerHTML = "";
+            offList.innerHTML = "";
+
+            // Update Burn results
+            document.querySelectorAll(".symbol.burn").forEach(el => {
+                const name = el.innerText.trim();
+                burnList.innerHTML += `<div>${name}</div>`;
+            });
+
+            // Update Off results
+            document.querySelectorAll(".symbol.off").forEach(el => {
+                const name = el.innerText.trim();
+                offList.innerHTML += `<div>${name}</div>`;
+            });
+
+            // If no results, display "None"
+            if (burnList.innerHTML === "") burnList.innerHTML = "None";
+            if (offList.innerHTML === "") offList.innerHTML = "None";
+        }
+    </script>
+</body>
+</html>
