@@ -7,56 +7,71 @@
     <style>
         /* General Styles */
         body {
-            font-family: Arial, sans-serif; /* Updated font to Arial */
-            background-color: #121212;
-            color: #ffffff;
+            font-family: 'Comic Sans MS', cursive, sans-serif; /* Updated font */
+            background-color: #121212; /* Black background */
+            color: #ffffff; /* White text for contrast */
             margin: 0;
             padding: 20px;
             text-align: center;
-            font-weight: bold; /* Make all body text bold */
         }
 
         h1 {
             font-size: 2.5rem;
             margin-bottom: 20px;
-            color: #ff4444;
-            font-weight: bold; /* Ensure bold */
-            text-decoration: underline;
+            color: #ff4444; /* Red for accent */
+            font-weight: bold; /* Bold text */
+            text-decoration: underline; /* Underline the title */
         }
 
         h2 {
             font-size: 1.8rem;
             margin-bottom: 10px;
-            font-weight: bold; /* Ensure bold */
+            font-weight: bold; /* Bold text */
         }
 
         h3 {
             font-size: 1.5rem;
-            color: #ff4444;
             margin-bottom: 10px;
-            font-weight: bold; /* Ensure bold */
-            text-decoration: underline;
+            font-weight: bold; /* Bold text */
+            text-decoration: underline; /* Underline the headings */
+        }
+
+        /* Unique Colors for Headings */
+        h3.left-room {
+            color: #ff4444; /* Red for Left Room */
+        }
+
+        h3.middle-room {
+            color: #ffd700; /* Yellow for Middle Room */
+        }
+
+        h3.right-room {
+            color: #00ff00; /* Green for Right Room */
+        }
+
+        h3.middle-bottom-room {
+            color: #00ffff; /* Cyan for Middle Bottom Room */
         }
 
         .container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 40px;
+            gap: 40px; /* Increased gap between groups */
             margin-top: 20px;
         }
 
         .group {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 15px; /* Gap between symbols within a group */
         }
 
         .symbol {
-            width: 120px;
-            height: 120px;
-            background-color: #1a1a1a;
-            border: 2px solid #444;
+            width: 120px; /* Adjusted width for better fit */
+            height: 120px; /* Adjusted height for better fit */
+            background-color: #1a1a1a; /* Dark gray for symbols */
+            border: 2px solid #444; /* Medium gray border */
             border-radius: 10px;
             display: flex;
             flex-direction: column;
@@ -65,35 +80,37 @@
             font-size: 16px;
             cursor: pointer;
             transition: all 0.3s ease;
-            color: #ffffff;
-            position: relative;
-            font-weight: bold; /* Ensure bold */
+            color: #ffffff; /* White text for contrast */
+            position: relative; /* Needed for the "X" overlay */
+            font-weight: bold; /* Bold text */
         }
 
         .symbol:hover {
-            background-color: #333;
-            border-color: #ffd700;
+            background-color: #333; /* Slightly lighter on hover */
+            border-color: #ffd700; /* Yellow border on hover */
         }
 
         .burn {
-            box-shadow: 0 0 15px #ffd700;
-            border-color: #ffd700;
+            box-shadow: 0 0 15px #ffd700; /* Yellow glow for "burn" */
+            border-color: #ffd700; /* Yellow border */
         }
 
+        /* Transparent shade for burn state */
         .burn .icon {
-            opacity: 0.7;
+            opacity: 0.7; /* Make the icon slightly transparent */
         }
 
         .off {
             opacity: 0.6;
         }
 
+        /* "X" overlay for off state */
         .off::before, .off::after {
             content: '';
             position: absolute;
             width: 100%;
             height: 2px;
-            background-color: #ff0000;
+            background-color: #ff0000; /* Red "X" */
             top: 50%;
             left: 0;
         }
@@ -109,59 +126,62 @@
         .callout-boxes {
             display: flex;
             justify-content: center;
-            gap: 100px;
-            margin-top: 30px;
+            gap: 100px; /* Ample space between Burn and Off boxes */
+            margin-top: 30px; /* Moved back to the bottom */
         }
 
         .callout-box {
-            background-color: #1a1a1a;
+            background-color: #1a1a1a; /* Dark gray background */
             padding: 20px;
             border-radius: 10px;
-            border: 1px solid #444;
-            width: 200px;
+            border: 1px solid #444; /* Medium gray border */
+            width: 200px; /* Fixed width for consistency */
         }
 
+        /* Make "Burn" text yellow */
         #burn-list + h2 {
-            color: #ffd700;
+            color: #ffd700; /* Yellow for Burn text */
         }
 
+        /* Make "Off" text red */
         #off-list + h2 {
-            color: #ff0000;
+            color: #ff0000; /* Red for Off text */
         }
 
         .callout-list {
             font-size: 1.2rem;
             margin-top: 10px;
-            color: #ffffff;
+            color: #ffffff; /* White text for contrast */
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            align-items: center;
-            font-weight: bold; /* Ensure bold */
+            gap: 10px; /* Space between names */
+            align-items: center; /* Center align items */
+            font-weight: bold; /* Bold text */
         }
 
         .reset-button {
             margin-top: 20px;
             padding: 10px 20px;
             font-size: 16px;
-            background-color: #ff4444;
-            color: #fff;
+            background-color: #ff4444; /* Red button */
+            color: #fff; /* White text */
             border: none;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            font-weight: bold; /* Ensure bold */
+            font-weight: bold; /* Bold text */
         }
 
         .reset-button:hover {
-            background-color: #cc0000;
+            background-color: #cc0000; /* Darker red on hover */
         }
 
         .icon {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 8px;
+            width: 100px; /* Adjusted size to fit the symbol box */
+            height: 100px; /* Adjusted size to fit the symbol box */
+            margin-bottom: 5px; /* Space between icon and text */
+            transition: opacity 0.3s ease; /* Smooth transition for opacity */
+            object-fit: cover; /* Ensures the icon scales properly */
         }
 
         /* Responsive Design */
@@ -185,17 +205,17 @@
             }
 
             .icon {
-                width: 100%;
-                height: 100%;
+                width: 80px; /* Adjust as needed */
+                height: 80px; /* Adjust as needed */
             }
 
             .callout-boxes {
                 flex-direction: column;
-                gap: 20px;
+                gap: 20px; /* Reduced gap for mobile */
             }
 
             .callout-box {
-                width: 100%;
+                width: 100%; /* Full width for mobile */
             }
         }
     </style>
@@ -207,7 +227,7 @@
     <div class="container">
         <!-- Column 1: Left Room -->
         <div class="group">
-            <h3>Left Room</h3>
+            <h3 class="left-room">Left Room</h3>
             <div style="display: flex; gap: 15px;">
                 <div class="symbol" onclick="toggleState(this)" aria-label="Witness">
                     <img src="icons/witness-icon.png" alt="Witness" class="icon">
@@ -239,7 +259,7 @@
 
         <!-- Column 2: Middle Room -->
         <div class="group">
-            <h3>Middle Room</h3>
+            <h3 class="middle-room">Middle Room</h3>
             <div style="display: flex; gap: 15px;">
                 <div></div> <!-- Empty space for alignment -->
                 <div class="symbol" onclick="toggleState(this)" aria-label="Drink">
@@ -261,7 +281,7 @@
 
         <!-- Column 3: Right Room -->
         <div class="group">
-            <h3>Right Room</h3>
+            <h3 class="right-room">Right Room</h3>
             <div style="display: flex; gap: 15px;">
                 <div class="symbol" onclick="toggleState(this)" aria-label="Worm">
                     <img src="icons/worm-icon.png" alt="Worm" class="icon">
@@ -290,7 +310,7 @@
     <!-- Middle Bottom Room Section -->
     <div class="container">
         <div class="group">
-            <h3>Middle Bottom Room</h3>
+            <h3 class="middle-bottom-room">Middle Bottom Room</h3>
             <div style="display: flex; gap: 15px;">
                 <div class="symbol" onclick="toggleState(this)" aria-label="Stop">
                     <img src="icons/stop-icon.png" alt="Stop" class="icon">
@@ -307,13 +327,13 @@
     <!-- Burn and Off Callout Boxes -->
     <div class="callout-boxes">
         <div class="callout-box">
-            <h2 style="color: #ffd700;">Burn</h2>
+            <h2 style="color: #ffd700;">Burn</h2> <!-- Explicitly set Burn text to yellow -->
             <div class="callout-list" id="burn-list">
                 <!-- Burn results will appear here -->
             </div>
         </div>
         <div class="callout-box">
-            <h2 style="color: #ff0000;">Off</h2>
+            <h2 style="color: #ff0000;">Off</h2> <!-- Explicitly set Off text to red -->
             <div class="callout-list" id="off-list">
                 <!-- Off results will appear here -->
             </div>
