@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slayahh Tool - Destiny 2 Helper</title>
+    <title>Vow of the Disciple Symbols</title>
     <style>
         /* General Styles */
         body {
@@ -11,35 +11,44 @@
             background-color: #121212;
             color: #ffffff;
             margin: 0;
-            padding: 10px;
+            padding: 20px;
             text-align: center;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
         }
 
         h1 {
-            font-size: 2rem;
+            font-size: 2.5rem;
             margin-bottom: 20px;
             color: #ff4444;
             font-weight: bold;
             text-decoration: underline;
         }
 
-        /* Main Menu Styles */
-        .menu-container {
+        /* Layout Adjustments */
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+
+        .column {
+            max-width: 90%; /* Adjust as needed */
+            width: 100%; /* Make it flexible */
             display: flex;
             flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            margin-top: 30px;
+            gap: 10px;
         }
 
         .menu-item {
-            width: 90%;
-            max-width: 300px;
-            padding: 15px;
+            max-width: 90%; /* Adjust as needed */
+            width: 100%; /* Make it flexible */
+            padding: 20px;
             background-color: #1a1a1a;
             border: 2px solid #444;
             border-radius: 10px;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -51,106 +60,9 @@
             border-color: #ffd700;
         }
 
-        /* Back Button */
-        .back-button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #ff4444;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            font-weight: bold;
-        }
-
-        .back-button:hover {
-            background-color: #cc0000;
-        }
-
-        /* Hidden Content */
-        .hidden {
-            display: none;
-        }
-
-        /* Encounter 1 Styles */
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .column {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            width: 90%;
-            max-width: 300px;
-        }
-
-        select {
-            padding: 10px;
-            font-size: 16px;
-            border: 2px solid #444;
-            border-radius: 5px;
-            background-color: #1a1a1a;
-            color: #ffffff;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        select:hover {
-            border-color: #ffd700;
-        }
-
-        .results {
-            margin-top: 20px;
-            font-size: 1.1rem;
-        }
-
-        .results h2 {
-            color: #ffd700;
-        }
-
-        .results ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .results li {
-            margin: 5px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .results li span {
-            color: #ff4444;
-            font-weight: bold;
-        }
-
-        .icon {
-            width: 24px;
-            height: 24px;
-        }
-
-        /* Encounter 3 Styles */
-        .group {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            width: 90%;
-            max-width: 300px;
-            margin: 0 auto;
-        }
-
         .symbol {
-            width: 100%;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             background-color: #1a1a1a;
             border: 2px solid #444;
             border-radius: 10px;
@@ -176,58 +88,23 @@
             border-color: #ffd700;
         }
 
-        .burn .icon {
-            opacity: 0.7;
-        }
-
         .off {
             opacity: 0.6;
         }
 
-        .off::before, .off::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            background-color: #ff0000;
-            top: 50%;
-            left: 0;
-        }
-
-        .off::before {
-            transform: rotate(45deg);
-        }
-
-        .off::after {
-            transform: rotate(-45deg);
-        }
-
         .callout-boxes {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-            margin-top: 20px;
+            justify-content: center;
+            gap: 100px;
+            margin-top: 30px;
         }
 
         .callout-box {
             background-color: #1a1a1a;
-            padding: 15px;
+            padding: 20px;
             border-radius: 10px;
             border: 1px solid #444;
-            width: 90%;
-            max-width: 300px;
-        }
-
-        .callout-list {
-            font-size: 1.1rem;
-            margin-top: 10px;
-            color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            align-items: center;
-            font-weight: bold;
+            width: 200px;
         }
 
         .reset-button {
@@ -248,279 +125,57 @@
         }
 
         .icon {
-            width: 60px;
-            height: 60px;
+            width: 100px;
+            height: 100px;
             margin-bottom: 5px;
             transition: opacity 0.3s ease;
             object-fit: cover;
         }
 
-        /* Media Queries for Smaller Screens */
-        @media (max-width: 600px) {
+        /* Responsive Design */
+        @media (max-width: 768px) {
             h1 {
-                font-size: 1.8rem;
+                font-size: 2rem; /* Reduce font size for smaller screens */
             }
 
             .menu-item {
-                font-size: 1rem;
-                padding: 10px;
+                font-size: 1rem; /* Reduce font size for smaller screens */
+            }
+
+            .container {
+                flex-direction: column; /* Stack columns vertically on small screens */
+                gap: 10px; /* Reduce gap between columns */
+            }
+
+            .callout-boxes {
+                flex-direction: column; /* Stack callout boxes vertically */
+                gap: 20px; /* Adjust gap */
             }
 
             .symbol {
+                width: 80px; /* Reduce symbol size */
                 height: 80px;
+                font-size: 14px; /* Reduce font size */
             }
 
             .icon {
-                width: 50px;
-                height: 50px;
+                width: 60px; /* Reduce icon size */
+                height: 60px;
             }
         }
     </style>
 </head>
 <body>
-    <h1>Slayahh Tool</h1>
-
-    <!-- Main Menu -->
-    <div id="main-menu">
-        <div class="menu-container">
-            <div class="menu-item" onclick="loadContent('encounter-1')">Encounter 1</div>
-            <div class="menu-item" onclick="loadContent('encounter-3')">Encounter 3</div>
-        </div>
+    <h1>Vow of the Disciple Symbols</h1>
+    <div class="container">
+        <div class="column">Left Column</div>
+        <div class="column">Middle Column</div>
+        <div class="column">Right Column</div>
     </div>
-
-    <!-- Encounter 1 -->
-    <div id="encounter-1" class="hidden">
-        <h1>Encounter 1</h1>
-        <div class="container">
-            <!-- Left Column -->
-            <div class="column">
-                <label for="left">Left Column</label>
-                <select id="left">
-                    <option value="">Select an icon</option>
-                    <option value="Guardian">1. Guardian</option>
-                    <option value="Hive">1. Hive</option>
-                    <option value="Traveler">1. Traveler</option>
-                    <option value="Pyramid">1. Pyramid</option>
-                </select>
-            </div>
-            <!-- Middle Column -->
-            <div class="column">
-                <label for="middle">Middle Column</label>
-                <select id="middle">
-                    <option value="">Select an icon</option>
-                    <option value="Kill">2. Kill</option>
-                    <option value="Worship">2. Worship</option>
-                    <option value="Give">2. Give</option>
-                    <option value="Drink">2. Drink</option>
-                    <option value="Stop">2. Stop</option>
-                </select>
-            </div>
-            <!-- Right Column -->
-            <div class="column">
-                <label for="right">Right Column</label>
-                <select id="right">
-                    <option value="">Select an icon</option>
-                    <option value="Witness">3. Witness</option>
-                    <option value="Traveler">3. Traveler</option>
-                    <option value="Light">3. Light</option>
-                    <option value="Worm">3. Worm</option>
-                    <option value="Darkness">3. Darkness</option>
-                    <option value="Savathun">3. Savathun</option>
-                </select>
-            </div>
-        </div>
-        <!-- Results Section -->
-        <div class="results">
-            <h2>Possible Answers</h2>
-            <ul id="possible-answers"></ul>
-        </div>
-        <button class="back-button" onclick="goBack()">Back to Main Menu</button>
+    <div class="callout-boxes">
+        <div class="callout-box">Burn</div>
+        <div class="callout-box">Off</div>
     </div>
-
-    <!-- Encounter 3 -->
-    <div id="encounter-3" class="hidden">
-        <h1>Encounter 3</h1>
-        <div class="container">
-            <!-- Left Room -->
-            <div class="group">
-                <h3 class="left-room">Left Room</h3>
-                <div style="display: flex; gap: 15px;">
-                    <div class="symbol" onclick="toggleState(this)" aria-label="Witness">
-                        <img src="icons/witness-icon.png" alt="Witness" class="icon">
-                        Witness
-                    </div>
-                    <div class="symbol" onclick="toggleState(this)" aria-label="Hive">
-                        <img src="icons/hive-icon.png" alt="Hive" class="icon">
-                        Hive
-                    </div>
-                </div>
-                <div style="display: flex; gap: 15px;">
-                    <div class="symbol" onclick="toggleState(this)" aria-label="Pyramid">
-                        <img src="icons/pyramid-icon.png" alt="Pyramid" class="icon">
-                        Pyramid
-                    </div>
-                    <div class="symbol" onclick="toggleState(this)" aria-label="Guardian">
-                        <img src="icons/guardian-icon.png" alt="Guardian" class="icon">
-                        Guardian
-                    </div>
-                </div>
-                <div style="display: flex; gap: 15px;">
-                    <div style="width: 120px;"></div>
-                    <div class="symbol" onclick="toggleState(this)" aria-label="Traveler">
-                        <img src="icons/traveler-icon.png" alt="Traveler" class="icon">
-                        Traveler
-                    </div>
-                </div>
-            </div>
-            <!-- Middle Room -->
-            <div class="group">
-                <h3 class="middle-room">Middle Room</h3>
-                <div style="display: flex; gap: 15px;">
-                    <div></div>
-                    <div class="symbol" onclick="toggleState(this)" aria-label="Drink">
-                        <img src="icons/drink-icon.png" alt="Drink" class="icon">
-                        Drink
-                    </div>
-                </div>
-                <div style="display: flex; gap: 15px;">
-                    <div class="symbol" onclick="toggleState(this)" aria-label="Worship">
-                        <img src="icons/worship-icon.png" alt="Worship" class="icon">
-                        Worship
-                    </div>
-                    <div class="symbol" onclick="toggleState(this)" aria-label="Kill">
-                        <img src="icons/kill-icon.png" alt="Kill" class="icon">
-                        Kill
-                    </div>
-                </div>
-            </div>
-            <!-- Right Room -->
-            <div class="group">
-                <h3 class="right-room">Right Room</h3>
-                <div style="display: flex; gap: 15px;">
-                    <div class="symbol" onclick="toggleState(this)" aria-label="Worm">
-                        <img src="icons/worm-icon.png" alt="Worm" class="icon">
-                        Worm
-                    </div>
-                    <div class="symbol" onclick="toggleState(this)" aria-label="Savathûn">
-                        <img src="icons/savathun-icon.png" alt="Savathûn" class="icon">
-                        Savathûn
-                    </div>
-                </div>
-                <div style="display: flex; gap: 15px;">
-                    <div class="symbol" onclick="toggleState(this)" aria-label="Darkness">
-                        <img src="icons/darkness-icon.png" alt="Darkness" class="icon">
-                        Darkness
-                    </div>
-                </div>
-                <div style="display: flex; gap: 15px;">
-                    <div class="symbol" onclick="toggleState(this)" aria-label="Light">
-                        <img src="icons/light-icon.png" alt="Light" class="icon">
-                        Light
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Middle Bottom Room -->
-        <div class="container">
-            <div class="group">
-                <h3 class="middle-bottom-room">Middle Bottom Room</h3>
-                <div style="display: flex; gap: 15px;">
-                    <div class="symbol" onclick="toggleState(this)" aria-label="Stop">
-                        <img src="icons/stop-icon.png" alt="Stop" class="icon">
-                        Stop
-                    </div>
-                    <div class="symbol" onclick="toggleState(this)" aria-label="Give">
-                        <img src="icons/give-icon.png" alt="Give" class="icon">
-                        Give
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Burn and Off Callout Boxes -->
-        <div class="callout-boxes">
-            <div class="callout-box">
-                <h2 style="color: #ffd700;">Burn</h2>
-                <div class="callout-list" id="burn-list"></div>
-            </div>
-            <div class="callout-box">
-                <h2 style="color: #ff0000;">Off</h2>
-                <div class="callout-list" id="off-list"></div>
-            </div>
-        </div>
-        <button class="reset-button" onclick="resetSymbols()">Reset</button>
-        <button class="back-button" onclick="goBack()">Back to Main Menu</button>
-    </div>
-
-    <script>
-        // Function to load content dynamically
-        function loadContent(sectionId) {
-            // Hide all sections
-            document.querySelectorAll('.hidden').forEach(section => {
-                section.style.display = 'none';
-            });
-
-            // Show the selected section
-            document.getElementById(sectionId).style.display = 'block';
-
-            // Hide the main menu
-            document.getElementById('main-menu').style.display = 'none';
-        }
-
-        // Function to go back to the main menu
-        function goBack() {
-            // Hide all sections
-            document.querySelectorAll('.hidden').forEach(section => {
-                section.style.display = 'none';
-            });
-
-            // Show the main menu
-            document.getElementById('main-menu').style.display = 'block';
-        }
-
-        // Encounter 1 Script
-        const combinations = [
-            { left: "Guardian", middle: "Kill", right: "Witness" },
-            { left: "Guardian", middle: "Worship", right: "Traveler" },
-            { left: "Guardian", middle: "Worship", right: "Light" },
-            { left: "Hive", middle: "Worship", right: "Worm" },
-            { left: "Hive", middle: "Worship", right: "Darkness" },
-            { left: "Traveler", middle: "Give", right: "Guardian" },
-            { left: "Traveler", middle: "Give", right: "Light" },
-            { left: "Pyramid", middle: "Give", right: "Darkness" },
-            { left: "Pyramid", middle: "Kill", right: "Worm" },
-            { left: "Pyramid", middle: "Drink", right: "Worm" },
-            { left: "Pyramid", middle: "Stop", right: "Savathun" }
-        ];
-
-        const iconMap = {
-            Guardian: "icons/guardian-icon.png",
-            Hive: "icons/hive-icon.png",
-            Traveler: "icons/traveler-icon.png",
-            Pyramid: "icons/pyramid-icon.png",
-            Kill: "icons/kill-icon.png",
-            Worship: "icons/worship-icon.png",
-            Give: "icons/give-icon.png",
-            Drink: "icons/drink-icon.png",
-            Stop: "icons/stop-icon.png",
-            Witness: "icons/witness-icon.png",
-            Light: "icons/light-icon.png",
-            Worm: "icons/worm-icon.png",
-            Darkness: "icons/darkness-icon.png",
-            Savathun: "icons/savathun-icon.png"
-        };
-
-        const leftSelect = document.getElementById("left");
-        const middleSelect = document.getElementById("middle");
-        const rightSelect = document.getElementById("right");
-        const possibleAnswers = document.getElementById("possible-answers");
-
-        function updatePossibleAnswers() {
-            const left = leftSelect.value;
-            const middle = middleSelect.value;
-            const right = rightSelect.value;
-
-            possibleAnswers.innerHTML = "";
-
-            const matches = combinations.filter(combo => {
-                const leftMatch = left === "" || combo.left === left;
-                const middleMatch
+    <button class="reset-button">Reset</button>
+</body>
+</html>
