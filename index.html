@@ -2,99 +2,107 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slayahh Tool</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Slayah Toolz</title>
     <style>
-        /* General Styles */
+        /* --- General Styles --- */
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Arial', 'Helvetica', sans-serif;
             background-color: #121212;
             color: #ffffff;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             text-align: center;
+            overflow-x: hidden; /* Prevent horizontal scroll on the body */
         }
 
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
+            font-size: 2.5rem;  /* Adjusted for mobile */
             color: #ff4444;
+            margin-bottom: 1rem;
             font-weight: bold;
             text-decoration: underline;
         }
 
-        /* Main Menu Styles */
-        .menu-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-            margin-top: 50px;
-        }
-
-        .menu-item {
-            width: 200px;
-            padding: 20px;
-            background-color: #1a1a1a;
-            border: 2px solid #444;
-            border-radius: 10px;
-            font-size: 1.2rem;
+        h2 {
+            font-size: 1.8rem; /* Adjusted for mobile */
+            margin-bottom: 15px;
+            color: #ffd700;
             font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: #ffffff;
+            text-decoration: underline;
         }
 
-        .menu-item:hover {
+        /* --- Navigation Menu Styles --- */
+        .nav-menu {
             background-color: #333;
+            padding: 0.8rem 0; /* Adjusted padding */
+            margin-bottom: 1rem;
+            overflow-x: auto; /* Allow horizontal scrolling for menu */
+            white-space: nowrap; /* Prevent menu items from wrapping */
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: inline-block; /* Important for horizontal scrolling */
+        }
+
+        .nav-menu li {
+            display: inline-block; /* Display menu items inline */
+            margin: 0 1rem;  /* Adjusted margin */
+        }
+
+        .nav-menu a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.1rem; /* Adjusted font size */
+            padding: 0.5rem 0.8rem; /* Adjusted padding */
+            border: 2px solid transparent;
+            border-radius: 5px;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            background-color: #ff4444;
             border-color: #ffd700;
         }
 
-        /* Back Button */
-        .back-button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #ff4444;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            font-weight: bold;
-        }
-
-        .back-button:hover {
-            background-color: #cc0000;
-        }
-
-        /* Hidden Content */
-        .hidden {
+        /* --- Content Container Styles --- */
+        .content {
+            padding: 15px; /* Adjusted padding */
             display: none;
+            overflow-x: auto; /*Allow horizontal scroll within content*/
         }
 
-        /* Encounter 1 Styles */
+        .content.active {
+            display: block;
+        }
+
+        /* --- Styles for Encounter 1 (Dropdowns) --- */
         .container {
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
+            flex-direction: column; /* Stack columns vertically */
+            align-items: center; /* Center items horizontally */
+            gap: 15px; /* Adjusted gap */
+            margin-top: 15px;
+        }
+        .column {
+           width: 80%; /* Make columns wider */
+           max-width: 300px; /* Add a max-width to control width */
+           margin-bottom: 10px; /* Space between columns*/
         }
 
-        .column {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
 
         select {
-            padding: 10px;
-            font-size: 16px;
+            padding: 8px; /* Adjusted padding */
+            font-size: 14px; /* Adjusted font size */
             border: 2px solid #444;
             border-radius: 5px;
             background-color: #1a1a1a;
             color: #ffffff;
             cursor: pointer;
+            width: 100%;  /* Full width of the column */
         }
 
         select:hover {
@@ -102,8 +110,8 @@
         }
 
         .results {
-            margin-top: 30px;
-            font-size: 1.2rem;
+            margin-top: 20px; /* Adjusted margin */
+            font-size: 1rem; /* Adjusted font size */
         }
 
         .results h2 {
@@ -113,95 +121,114 @@
         .results ul {
             list-style-type: none;
             padding: 0;
+            width: 100%; /* Make the results list full width */
+
         }
 
         .results li {
             margin: 5px 0;
             display: flex;
+            flex-wrap: wrap; /* Allow wrapping within list items */
             align-items: center;
-            justify-content: center;
-            gap: 10px;
+            justify-content: center;  /* Center content */
+            gap: 8px; /* Adjusted gap */
+            padding: 5px; /* Add padding for better spacing */
+            border-bottom: 1px solid #444; /* Add a subtle separator */
         }
 
         .results li span {
             color: #ff4444;
             font-weight: bold;
+              min-width: 60px; /* Set a minimum width for labels */
+             text-align: right; /* Align labels to the right */
         }
 
         .icon {
-            width: 24px;
-            height: 24px;
+            width: 20px; /* Adjusted size */
+            height: 20px;
         }
 
-        /* Encounter 3 Boss Styles */
+
+        /* --- Styles for Encounter 3 (Image Map) --- */
         .map-container {
             position: relative;
-            display: inline-block;
-            margin-top: 20px;
-            overflow-x: auto; /* Enable horizontal scrolling */
-            white-space: nowrap; /* Prevent wrapping of map content */
-            width: 100%; /* Full width */
+            display: block; /* Block-level for proper margin/width */
+            margin: 20px auto; /* Center horizontally and add margin */
+            width: 95%; /* Control width of the container */
+            max-width: 500px; /* Add a maximum width to prevent over-stretching */
+            overflow: hidden; /* Ensure image stays within container */
+         }
+
+        .map-container img {
+            display: block;
+            width: 100%;  /* Make the image fill the container */
+            height: auto; /* Maintain aspect ratio */
         }
 
         .highlight {
             position: absolute;
-            border: 5px solid yellow;
+            border: 3px solid yellow; /* Adjusted border */
             pointer-events: none;
-            box-shadow: 0 0 15px yellow;
+            box-shadow: 0 0 10px yellow; /* Adjusted shadow */
         }
 
         .off-mark {
             position: absolute;
             color: red;
-            font-size: 36px;
+            font-size: 24px; /* Adjusted font size */
             font-weight: bold;
             pointer-events: none;
-            text-shadow: 0 0 10px red;
+            text-shadow: 0 0 8px red; /* Adjusted shadow */
         }
 
+
         .bottom-section {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background-color: #333;
-            padding: 10px;
-            display: flex;
-            justify-content: space-around;
-            border-top: 2px solid #444;
-            font-size: 20px;
+           position: relative; /* Changed from fixed to relative */
+           width: 100%;
+           background-color: #333;
+           padding: 10px;
+           display: flex;
+           flex-direction: column; /* Stack lists vertically */
+           align-items: center; /* Center items horizontally */
+           border-top: 2px solid #444;
+           font-size: 16px;
         }
 
         .list-container {
             background-color: #444;
             border: 1px solid #555;
-            padding: 10px;
+            padding: 8px; /* Adjusted padding */
             border-radius: 5px;
-            width: 45%;
+             width: 90%; /* Make lists full width */
             box-sizing: border-box;
             overflow-y: auto;
-            max-height: 150px;
+             max-height: 120px; /* Adjusted max-height */
+            margin-bottom: 10px; /* Add margin between lists */
         }
 
-        .list-container h3.burn-title {
-            color: yellow;
-            font-size: 24px;
-        }
 
+        .list-container h3.burn-title,
         .list-container h3.off-title {
-            color: red;
-            font-size: 24px;
+            color: yellow;
+            font-size: 1.2rem; /* Adjusted font size */
+             margin-bottom: 5px; /* Add some spacing */
         }
 
         .bottom-section ul {
             list-style-type: none;
             padding: 0;
             margin: 0;
+            width: 100%; /* Ensure list items fill the container */
+
         }
 
         .bottom-section li {
-            padding: 5px 0;
+             padding: 6px 0; /* Adjusted padding */
             border-bottom: 1px solid #555;
-            font-size: 20px;
+            font-size: 0.9rem; /* Adjusted font size */
+            width: 100%; /* Ensure list items are full width */
+            box-sizing: border-box; /* Include padding in width */
+
         }
 
         .bottom-section li:last-child {
@@ -209,167 +236,166 @@
         }
 
         #reset-button {
-            padding: 15px 30px;
+            padding: 10px 20px; /* Adjusted padding */
             background-color: #555;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 20px;
-            margin: 20px auto;
+            font-size: 1rem; /* Adjusted font size */
+            margin: 15px auto; /* Adjusted margin */
             display: block;
+             width: 80%; /* Make the button wider */
+            max-width: 300px; /* Control maximum width */
         }
 
         #reset-button:hover {
             background-color: #777;
         }
 
-        /* Mobile adjustments */
-        @media (max-width: 600px) {
-            body {
-                font-size: 16px;
-            }
-            .bottom-section {
-                flex-direction: column;
-                align-items: center;
-            }
-            .list-container {
-                width: 90%;
-                margin-bottom: 10px;
-            }
-            #reset-button {
-                width: 90%;
-                margin: 10px auto;
-            }
-            .map-container {
-                overflow-x: scroll; /* Enable horizontal scrolling on mobile */
+        /* Specific adjustments for smaller screens, if needed */
+        @media (max-width: 480px) {
+          h1 {
+            font-size: 2rem;
+          }
+          h2 {
+             font-size: 1.5rem;
+          }
+
+          .nav-menu a{
+              font-size: 1rem;
+          }
+          .bottom-section li {
+                font-size: 0.8rem;
             }
         }
     </style>
 </head>
 <body>
-    <h1>Slayahh Tool</h1>
+    <h1>Slayah Toolz</h1>
 
-    <!-- Main Menu -->
-    <div id="main-menu">
-        <div class="menu-container">
-            <div class="menu-item" onclick="loadContent('encounter-1')">Encounter 1</div>
-            <div class="menu-item" onclick="loadContent('encounter-3-boss')">Encounter 3 Boss</div>
+    <!-- Navigation Menu -->
+    <nav class="nav-menu">
+        <ul>
+            <li><a href="#" data-target="encounter1">Encounter 1</a></li>
+            <li><a href="#" data-target="encounter3">Encounter 3</a></li>
+        </ul>
+    </nav>
+
+    <!-- Encounter 1 Content -->
+    <div id="encounter1" class="content">
+       <h2>Encounter 1</h2>
+
+    <!-- Columns for Left, Middle, and Right -->
+    <div class="container">
+        <!-- Left Column -->
+        <div class="column">
+            <label for="left">Left</label>
+            <select id="left">
+                <option value="">Select an icon</option>
+                <option value="Guardian">1. Guardian</option>
+                <option value="Hive">1. Hive</option>
+                <option value="Traveler">1. Traveler</option>
+                <option value="Pyramid">1. Pyramid</option>
+            </select>
+        </div>
+
+        <!-- Middle Column -->
+        <div class="column">
+            <label for="middle">Middle</label>
+            <select id="middle">
+                <option value="">Select an icon</option>
+                <option value="Kill">2. Kill</option>
+                <option value="Worship">2. Worship</option>
+                <option value="Give">2. Give</option>
+                <option value="Drink">2. Drink</option>
+                <option value="Stop">2. Stop</option>
+            </select>
+        </div>
+
+        <!-- Right Column -->
+        <div class="column">
+            <label for="right">Right</label>
+            <select id="right">
+                <option value="">Select an icon</option>
+                <option value="Witness">3. Witness</option>
+                <option value="Traveler">3. Traveler</option>
+                <option value="Light">3. Light</option>
+                <option value="Worm">3. Worm</option>
+                <option value="Darkness">3. Darkness</option>
+                <option value="Savathun">3. Savathun</option>
+            </select>
         </div>
     </div>
 
-    <!-- Encounter 1 -->
-    <div id="encounter-1" class="hidden">
-        <h1>Encounter 1</h1>
-        <div class="container">
-            <!-- Left Column -->
-            <div class="column">
-                <label for="left">Left Column</label>
-                <select id="left">
-                    <option value="">Select an icon</option>
-                    <option value="Guardian">1. Guardian</option>
-                    <option value="Hive">1. Hive</option>
-                    <option value="Traveler">1. Traveler</option>
-                    <option value="Pyramid">1. Pyramid</option>
-                </select>
-            </div>
-            <!-- Middle Column -->
-            <div class="column">
-                <label for="middle">Middle Column</label>
-                <select id="middle">
-                    <option value="">Select an icon</option>
-                    <option value="Kill">2. Kill</option>
-                    <option value="Worship">2. Worship</option>
-                    <option value="Give">2. Give</option>
-                    <option value="Drink">2. Drink</option>
-                    <option value="Stop">2. Stop</option>
-                </select>
-            </div>
-            <!-- Right Column -->
-            <div class="column">
-                <label for="right">Right Column</label>
-                <select id="right">
-                    <option value="">Select an icon</option>
-                    <option value="Witness">3. Witness</option>
-                    <option value="Traveler">3. Traveler</option>
-                    <option value="Light">3. Light</option>
-                    <option value="Worm">3. Worm</option>
-                    <option value="Darkness">3. Darkness</option>
-                    <option value="Savathun">3. Savathun</option>
-                </select>
-            </div>
-        </div>
-        <!-- Results Section -->
-        <div class="results">
-            <h2>Possible Answers</h2>
-            <ul id="possible-answers"></ul>
-        </div>
-        <button class="back-button" onclick="goBack()">Back to Main Menu</button>
+    <!-- Results Section -->
+    <div class="results">
+        <h2>Possible Answers</h2>
+        <ul id="possible-answers"></ul>
+    </div>
     </div>
 
-    <!-- Encounter 3 Boss -->
-    <div id="encounter-3-boss" class="hidden">
-        <h1>Encounter 3 Boss</h1>
-        <button id="reset-button">Reset</button>
-        <div class="map-container">
-            <img src="sd3.png" alt="Destiny 2 Map" usemap="#image-map">
-            <map name="image-map">
-                <area shape="rect" coords="8,1,109,95" alt="witness-icon" data-id="witness-icon">
-                <area shape="rect" coords="299,4,413,90" alt="hive-icon" data-id="hive-icon">
-                <area shape="rect" coords="307,227,409,334" alt="guardian-icon" data-id="guardian-icon">
-                <area shape="rect" coords="2,657,111,769" alt="pyramid-icon" data-id="pyramid-icon">
-                <area shape="rect" coords="307,791,409,899" alt="traveler-icon" data-id="traveler-icon">
-                <area shape="rect" coords="883,3,993,123" alt="drink-icon" data-id="drink-icon">
-                <area shape="rect" coords="534,793,646,893" alt="worship-icon" data-id="worship-icon">
-                <area shape="rect" coords="879,788,997,898" alt="kill-icon" data-id="kill-icon">
-                <area shape="rect" coords="597,252,674,331" alt="stop-icon" data-id="stop-icon">
-                <area shape="rect" coords="831,258,911,333" alt="give-icon" data-id="give-icon">
-                <area shape="rect" coords="1143,10,1238,106" alt="worm-icon" data-id="worm-icon">
-                <area shape="rect" coords="1493,3,1599,108" alt="savathun-icon" data-id="savathun-icon">
-                <area shape="rect" coords="1284,507,1385,613" alt="darkness-icon" data-id="darkness-icon">
-                <area shape="rect" coords="1149,736,1248,837" alt="light-icon" data-id="light-icon">
-            </map>
-        </div>
-        <div class="bottom-section">
-            <div class="list-container">
-                <h3 class="burn-title">Burn</h3>
-                <ul id="burn-list"></ul>
-            </div>
-            <div class="list-container">
-                <h3 class="off-title">Off</h3>
-                <ul id="off-list"></ul>
-            </div>
-        </div>
-        <button class="back-button" onclick="goBack()">Back to Main Menu</button>
+    <!-- Encounter 3 Content -->
+    <div id="encounter3" class="content">
+        <h2>Encounter 3</h2>
+          <!-- Reset Button -->
+    <button id="reset-button">Reset</button>
+
+    <div class="map-container">
+        <img src="sd3.png" alt="Destiny 2 Map" usemap="#image-map">
+        <map name="image-map">
+            <area shape="rect" coords="8,1,109,95" alt="witness-icon" data-id="witness-icon">
+            <area shape="rect" coords="299,4,413,90" alt="hive-icon" data-id="hive-icon">
+            <area shape="rect" coords="307,227,409,334" alt="guardian-icon" data-id="guardian-icon">
+            <area shape="rect" coords="2,657,111,769" alt="pyramid-icon" data-id="pyramid-icon">
+            <area shape="rect" coords="307,791,409,899" alt="traveler-icon" data-id="traveler-icon">
+            <area shape="rect" coords="883,3,993,123" alt="drink-icon" data-id="drink-icon">
+            <area shape="rect" coords="534,793,646,893" alt="worship-icon" data-id="worship-icon">
+            <area shape="rect" coords="879,788,997,898" alt="kill-icon" data-id="kill-icon">
+            <area shape="rect" coords="597,252,674,331" alt="stop-icon" data-id="stop-icon">
+            <area shape="rect" coords="831,258,911,333" alt="give-icon" data-id="give-icon">
+            <area shape="rect" coords="1143,10,1238,106" alt="worm-icon" data-id="worm-icon">
+            <area shape="rect" coords="1493,3,1599,108" alt="savathun-icon" data-id="savathun-icon">
+            <area shape="rect" coords="1284,507,1385,613" alt="darkness-icon" data-id="darkness-icon">
+            <area shape="rect" coords="1149,736,1248,837" alt="light-icon" data-id="light-icon">
+        </map>
     </div>
+
+    <div class="bottom-section">
+        <div class="list-container">
+            <h3 class="burn-title">Burn</h3>
+            <ul id="burn-list"></ul>
+        </div>
+        <div class="list-container">
+            <h3 class="off-title">Off</h3>
+            <ul id="off-list"></ul>
+        </div>
+    </div>
+    </div>
+
 
     <script>
-        // Function to load content dynamically
-        function loadContent(sectionId) {
-            // Hide all sections
-            document.querySelectorAll('.hidden').forEach(section => {
-                section.style.display = 'none';
+        // --- Navigation Menu Script ---
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent default link behavior
+
+                // Remove 'active' class from all content sections
+                document.querySelectorAll('.content').forEach(content => {
+                    content.classList.remove('active');
+                });
+
+                // Get the target content ID from the link's data-target attribute
+                const targetId = this.getAttribute('data-target');
+                // Add 'active' class to the target content section
+                document.getElementById(targetId).classList.add('active');
             });
+        });
 
-            // Show the selected section
-            document.getElementById(sectionId).style.display = 'block';
 
-            // Hide the main menu
-            document.getElementById('main-menu').style.display = 'none';
-        }
 
-        // Function to go back to the main menu
-        function goBack() {
-            // Hide all sections
-            document.querySelectorAll('.hidden').forEach(section => {
-                section.style.display = 'none';
-            });
-
-            // Show the main menu
-            document.getElementById('main-menu').style.display = 'block';
-        }
-
-        // Encounter 1 Script
+        // --- Encounter 1 Script ---
+                // Define the combinations
         const combinations = [
             { left: "Guardian", middle: "Kill", right: "Witness" },
             { left: "Guardian", middle: "Worship", right: "Traveler" },
@@ -384,6 +410,7 @@
             { left: "Pyramid", middle: "Stop", right: "Savathun" }
         ];
 
+        // Map icon names to their file paths
         const iconMap = {
             Guardian: "icons/guardian-icon.png",
             Hive: "icons/hive-icon.png",
@@ -401,18 +428,23 @@
             Savathun: "icons/savathun-icon.png"
         };
 
+        // Get references to the dropdowns and results list
         const leftSelect = document.getElementById("left");
         const middleSelect = document.getElementById("middle");
         const rightSelect = document.getElementById("right");
         const possibleAnswers = document.getElementById("possible-answers");
 
+        // Function to update possible answers
         function updatePossibleAnswers() {
+            // Get selected values
             const left = leftSelect.value;
             const middle = middleSelect.value;
             const right = rightSelect.value;
 
+            // Clear previous results
             possibleAnswers.innerHTML = "";
 
+            // Find matching combinations
             const matches = combinations.filter(combo => {
                 const leftMatch = left === "" || combo.left === left;
                 const middleMatch = middle === "" || combo.middle === middle;
@@ -420,17 +452,20 @@
                 return leftMatch && middleMatch && rightMatch;
             });
 
+            // Display possible answers
             if (matches.length > 0) {
                 matches.forEach(match => {
                     const li = document.createElement("li");
-                    li.innerHTML = `
-                        <span>Left:</span> 
+
+                    // Create spans for labels and icons
+                    li.innerHTML =
+                        `<span>Left:</span>
                         <img src="${iconMap[match.left]}" alt="${match.left}" class="icon"> ${match.left},
-                        <span>Middle:</span> 
+                        <span>Middle:</span>
                         <img src="${iconMap[match.middle]}" alt="${match.middle}" class="icon"> ${match.middle},
-                        <span>Right:</span> 
-                        <img src="${iconMap[match.right]}" alt="${match.right}" class="icon"> ${match.right}
-                    `;
+                        <span>Right:</span>
+                        <img src="${iconMap[match.right]}" alt="${match.right}" class="icon"> ${match.right}`
+                    ;
                     possibleAnswers.appendChild(li);
                 });
             } else {
@@ -440,104 +475,110 @@
             }
         }
 
+        // Add event listeners to dropdowns
         leftSelect.addEventListener("change", updatePossibleAnswers);
         middleSelect.addEventListener("change", updatePossibleAnswers);
         rightSelect.addEventListener("change", updatePossibleAnswers);
 
-        // Encounter 3 Boss Script
-        const burnList = document.getElementById("burn-list");
-        const offList = document.getElementById("off-list");
-        const mapContainer = document.querySelector(".map-container");
-        const resetButton = document.getElementById("reset-button");
 
-        let activeStates = {};
-        let overlayElements = {};
+// --- Encounter 3 Script ---
+        const burnList3 = document.getElementById("burn-list");
+        const offList3 = document.getElementById("off-list");
+        const mapContainer3 = document.querySelector("#encounter3 .map-container"); // More specific selector
+        const resetButton3 = document.getElementById("reset-button");
 
-        // Add click event listeners to all map areas
-        document.querySelectorAll("area").forEach(area => {
+        let activeStates3 = {};
+        let overlayElements3 = {};
+
+        // Add click event listeners to all map areas within encounter3
+        document.querySelectorAll("#encounter3 area").forEach(area => {
             area.addEventListener("click", function(event) {
                 event.preventDefault();
 
                 const symbol = this.getAttribute("data-id");
                 if (!symbol) return;
 
-                if (activeStates[symbol] === "burn") {
-                    activeStates[symbol] = "off";
-                } else if (activeStates[symbol] === "off") {
-                    delete activeStates[symbol];
+                if (activeStates3[symbol] === "burn") {
+                    activeStates3[symbol] = "off";
+                } else if (activeStates3[symbol] === "off") {
+                    delete activeStates3[symbol];
                 } else {
-                    activeStates[symbol] = "burn";
+                    activeStates3[symbol] = "burn";
                 }
 
-                updateLists();
-                updateVisuals(symbol, this);
+                updateLists3();
+                updateVisuals3(symbol, this);
             });
         });
 
-        // Update the Burn and Off lists
-        function updateLists() {
-            burnList.innerHTML = "";
-            offList.innerHTML = "";
+        // Update the Burn and Off lists for Encounter 3
+        function updateLists3() {
+            burnList3.innerHTML = "";
+            offList3.innerHTML = "";
 
-            for (const [symbol, state] of Object.entries(activeStates)) {
+            for (const [symbol, state] of Object.entries(activeStates3)) {
                 const li = document.createElement("li");
                 li.textContent = symbol.replace("-icon", "").toUpperCase();
                 if (state === "burn") {
-                    burnList.appendChild(li);
+                    burnList3.appendChild(li);
                 } else if (state === "off") {
-                    offList.appendChild(li);
+                    offList3.appendChild(li);
                 }
             }
         }
 
-        // Update visual indicators on the map
-        function updateVisuals(symbol, area) {
+         // Update visual indicators on the map for Encounter 3
+        function updateVisuals3(symbol, area) {
             let coords = area.getAttribute("coords").split(",").map(Number);
             let x = coords[0];
             let y = coords[1];
             let width = coords[2] - coords[0];
             let height = coords[3] - coords[1];
 
-            if (overlayElements[symbol]) {
-                overlayElements[symbol].remove();
-                delete overlayElements[symbol];
+            if (overlayElements3[symbol]) {
+                overlayElements3[symbol].remove();
+                delete overlayElements3[symbol];
             }
 
-            if (activeStates[symbol] === "burn") {
+            if (activeStates3[symbol] === "burn") {
                 let glow = document.createElement("div");
                 glow.className = "highlight";
                 glow.style.left = `${x}px`;
                 glow.style.top = `${y}px`;
                 glow.style.width = `${width}px`;
                 glow.style.height = `${height}px`;
-                glow.style.position = "absolute";
-                mapContainer.appendChild(glow);
-                overlayElements[symbol] = glow;
-            } else if (activeStates[symbol] === "off") {
+                glow.style.position = "absolute";  // Ensure absolute positioning
+                mapContainer3.appendChild(glow); // Append to the correct container
+                overlayElements3[symbol] = glow;
+            } else if (activeStates3[symbol] === "off") {
                 let redX = document.createElement("div");
                 redX.className = "off-mark";
                 redX.style.left = `${x + width / 2 - 10}px`;
                 redX.style.top = `${y + height / 2 - 10}px`;
                 redX.innerHTML = "X";
-                redX.style.position = "absolute";
-                mapContainer.appendChild(redX);
-                overlayElements[symbol] = redX;
+                redX.style.position = "absolute"; //Ensure absolute positioning
+                mapContainer3.appendChild(redX); // Append to the correct container
+                overlayElements3[symbol] = redX;
             }
-        }
+}
 
-        // Reset functionality
-        resetButton.addEventListener("click", function() {
+
+        // Reset functionality for Encounter 3
+        resetButton3.addEventListener("click", function() {
             // Clear active states
-            activeStates = {};
+            activeStates3 = {};
             // Clear overlay elements
-            for (const element of Object.values(overlayElements)) {
+            for (const element of Object.values(overlayElements3)) {
                 element.remove();
             }
-            overlayElements = {};
+            overlayElements3 = {};
             // Clear Burn and Off lists
-            burnList.innerHTML = "";
-            offList.innerHTML = "";
+            burnList3.innerHTML = "";
+            offList3.innerHTML = "";
         });
+
+         // Initially show Encounter 1
+         document.getElementById('encounter1').classList.add('active');
     </script>
 </body>
 </html>
