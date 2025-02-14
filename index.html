@@ -216,6 +216,19 @@
             body {
                 font-size: 16px;
             }
+
+            /* Stack Encounter 1 columns vertically */
+            .container {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .column {
+                width: 90%; /* Full width for mobile */
+            }
+
+            /* Adjust side-section for mobile */
             .side-section {
                 position: static; /* Stack vertically on mobile */
                 transform: none;
@@ -224,14 +237,17 @@
                 gap: 10px;
                 margin-top: 20px;
             }
+
             .list-container {
                 width: 90%; /* Full width for mobile */
                 max-height: 150px; /* Adjust height for mobile */
             }
+
             #reset-button {
                 width: 90%;
                 margin: 10px auto;
             }
+
             .map-container {
                 overflow-x: scroll; /* Enable horizontal scrolling on mobile */
             }
