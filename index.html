@@ -140,16 +140,22 @@
             text-shadow: 0 0 10px red;
         }
 
-        .bottom-section {
+        /* Move Burn and Off boxes to the sides */
+        .side-section {
             position: fixed;
-            bottom: 0;
-            width: 100%;
-            background-color: #333;
-            padding: 10px;
+            top: 50%; /* Center vertically */
+            transform: translateY(-50%);
             display: flex;
-            justify-content: space-around;
-            border-top: 2px solid #444;
-            font-size: 20px;
+            flex-direction: column;
+            gap: 20px; /* Space between Burn and Off boxes */
+        }
+
+        .side-section.left {
+            left: 10px; /* Position on the left */
+        }
+
+        .side-section.right {
+            right: 10px; /* Position on the right */
         }
 
         .list-container {
@@ -157,35 +163,35 @@
             border: 1px solid #555;
             padding: 10px;
             border-radius: 5px;
-            width: 45%;
+            width: 150px; /* Fixed width for side boxes */
             box-sizing: border-box;
             overflow-y: auto;
-            max-height: 150px;
+            max-height: 200px; /* Adjust height as needed */
         }
 
         .list-container h3.burn-title {
             color: yellow;
-            font-size: 24px;
+            font-size: 20px;
         }
 
         .list-container h3.off-title {
             color: red;
-            font-size: 24px;
+            font-size: 20px;
         }
 
-        .bottom-section ul {
+        .list-container ul {
             list-style-type: none;
             padding: 0;
             margin: 0;
         }
 
-        .bottom-section li {
+        .list-container li {
             padding: 5px 0;
             border-bottom: 1px solid #555;
-            font-size: 20px;
+            font-size: 16px;
         }
 
-        .bottom-section li:last-child {
+        .list-container li:last-child {
             border-bottom: none;
         }
 
@@ -210,13 +216,17 @@
             body {
                 font-size: 16px;
             }
-            .bottom-section {
+            .side-section {
+                position: static; /* Stack vertically on mobile */
+                transform: none;
                 flex-direction: column;
                 align-items: center;
+                gap: 10px;
+                margin-top: 20px;
             }
             .list-container {
-                width: 90%;
-                margin-bottom: 10px;
+                width: 90%; /* Full width for mobile */
+                max-height: 150px; /* Adjust height for mobile */
             }
             #reset-button {
                 width: 90%;
@@ -311,11 +321,14 @@
                 <area shape="rect" coords="1149,736,1248,837" alt="light-icon" data-id="light-icon">
             </map>
         </div>
-        <div class="bottom-section">
+        <!-- Burn and Off boxes on the sides -->
+        <div class="side-section left">
             <div class="list-container">
                 <h3 class="burn-title">Burn</h3>
                 <ul id="burn-list"></ul>
             </div>
+        </div>
+        <div class="side-section right">
             <div class="list-container">
                 <h3 class="off-title">Off</h3>
                 <ul id="off-list"></ul>
